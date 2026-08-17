@@ -1,0 +1,113 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug",
+            "type": "cortex-gdb",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "executable": "build/${workspaceFolderBasename}.elf",
+            "servertype": "openocd",
+            "serverpath": "${env:ONETHINX_PACK_LOC}/openocd/bin/openocd",
+            "searchDir": [ "${env:ONETHINX_PACK_LOC}/openocd/scripts" ],
+            "openOCDLaunchCommands": [
+                //"cmsis_dap_serial 141610F301237400",                          // Select debugger if you have multiple connected
+            ],
+            "configFiles": [
+                ".vscode/brd.cfg"
+            ],
+            "maxBreakpoints": 5,
+            "svdFile": "${env:ONETHINX_PACK_LOC}/config/svd/psoc6_01.svd",      // svdFile is optional, it can be very large.
+            "runToEntryPoint": "main",                                          // if true, program will halt at main. Not used for a restart     
+            "preLaunchTask": "${command:otx-maestro.preLaunch}",                        // otx.preLaunch will build the project to prevent unmatched source code debugging
+            "showDevDebugOutput": "none",                                       // Shows output of GDB, helpful when something is not working right
+            "showServerOutput": "switch",
+        },
+        // When using 'attach', make sure your program is running on the board and that your executable matches
+        // the image in the chip exactly, or else strange things can happen with breakpoint, variables, etc.
+        {
+            "name": "Attach",
+            "type": "cortex-gdb",
+            "request": "attach",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceRoot}/build/${workspaceFolderBasename}.elf",
+            "servertype": "openocd",
+            "serverpath": "${env:ONETHINX_PACK_LOC}/openocd/bin/openocd",
+            "searchDir": [ "${env:ONETHINX_PACK_LOC}/openocd/scripts" ],
+            "configFiles": [
+                ".vscode/brd.cfg"
+            ],
+            "openOCDPreConfigLaunchCommands": [
+                "set ATTACH 1",
+            ],
+            "overrideAttachCommands": [
+                "set mem inaccessible-by-default off",
+                "-enable-pretty-printing",
+                //"set output-radix 16",                                        // Uncomment this if you want decimal output instead of hexadecimal
+                "monitor halt"
+            ],
+            "overrideResetCommands": [
+                "tbreak main",
+                "mon reset init"
+            ],
+            "maxBreakpoints": 5,
+            "svdFile": "${env:ONETHINX_PACK_LOC}/config/svd/psoc6_01.svd",      // svdFile is optional, it can be very large.
+            "showDevDebugOutput": "none",                                       // Shows output of GDB, helpful when something is not working right
+        },
+        {
+            "name": "Erase",
+            "type": "cortex-gdb",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceRoot}/build/${workspaceFolderBasename}.elf",
+            "servertype": "openocd",
+            "serverpath": "${env:ONETHINX_PACK_LOC}/openocd/bin/openocd",
+            "searchDir": [ "${env:ONETHINX_PACK_LOC}/openocd/scripts" ],
+            "configFiles": [
+                ".vscode/brd.cfg"
+            ],
+            "overrideLaunchCommands": [
+                "mon reset init",
+                "mon flash erase_address 0x10000000 0xE000",
+                "-gdb-exit"
+            ]
+        },
+        {
+            "name": "Program",
+            "type": "cortex-gdb",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceRoot}/build/${workspaceFolderBasename}.elf",
+            "servertype": "openocd",
+            "serverpath": "${env:ONETHINX_PACK_LOC}/openocd/bin/openocd",
+            "searchDir": [ "${env:ONETHINX_PACK_LOC}/openocd/scripts" ],
+            "configFiles": [
+                ".vscode/brd.cfg"
+            ],
+            "overrideLaunchCommands": [
+                "monitor program ./build/${workspaceFolderBasename}.elf",
+                "monitor reset_config srst_only",
+                "monitor reset run",
+                "monitor psoc6.dap dpreg 0x04 0x00",
+                "-gdb-exit"
+            ],
+        },
+        {
+            "name": "Check",
+            "type": "cortex-gdb",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceRoot}/build/${workspaceFolderBasename}.elf",
+            "servertype": "openocd",
+            "serverpath": "${env:ONETHINX_PACK_LOC}/openocd/bin/openocd",
+            "searchDir": [ "${env:ONETHINX_PACK_LOC}/openocd/scripts" ],
+            "configFiles": [
+                ".vscode/brd.cfg"
+            ],
+            "overrideLaunchCommands": [
+                "-gdb-exit"
+            ],
+            "showServerOutput": "switch",
+        },
+    ]
+}

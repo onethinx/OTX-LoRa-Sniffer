@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "name": "GCC",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${env:ONETHINX_PACK_LOC}/gcc-arm/arm-none-eabi/include"
+            ],
+            "defines": [
+                "CY_CORE_ID=0",
+                "CY_PSOC_CREATOR_USED=1",
+                "CY_FLASH_RWW_DRV_SUPPORT_DISABLED",
+                "CY8C6347BZI_BLD53"
+            ],
+            "compilerPath": "${env:ONETHINX_PACK_LOC}/gcc-arm/bin/arm-none-eabi-gcc",
+            "cStandard": "gnu99",
+            "cppStandard": "c++98",
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json"
+        }
+    ],
+    "version": 4
+}
