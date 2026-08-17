@@ -25,6 +25,20 @@ Example output:
 [12.345.678 - 0.250.123] TOA=41.216 RX len=12 rssi=-72.5 snr=8.25 | 01 02 03 04 ...
 ```
 
+## Requirements
+
+- **Hardware**
+  - Onethinx OTX-18 module / Devkit
+  - Debugger (e.g., MiniProg4 / CMSIS-DAP / J-Link)
+  - BLE-enabled devices for testing
+
+- **Software**
+  - [Visual Studio Code](https://code.visualstudio.com/)
+  - [OTX-Maestro Extension](https://github.com/onethinx/OTX-Maestro)
+  - [PSoC Creator (optional)](https://www.infineon.com/cms/en/design-support/tools/sdk/psoc-creator/) for chip configuration
+
+---
+
 ## Default LoRa Configuration
 
 | Parameter | Setting |
