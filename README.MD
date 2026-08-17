@@ -120,6 +120,6 @@ Make sure the selected RF parameters and frequency are permitted in your region.
 
 ## License
 
-Copyright (c) 2019-2022 Onethinx BV.
+Copyright (c) 2019-2026 Onethinx BV.
 
 This project is released under the MIT License. See the source files and/or `LICENSE` file for the complete license text.

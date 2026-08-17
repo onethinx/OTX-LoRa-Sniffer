@@ -15,10 +15,10 @@ endian     = 'little'
 # Creator_PostBuild_Minumum_Version: '2.10' - used for checking Creator_PostBuild minimum version, do not remove
 
 # Creator_PostBuild_Version_Line - automatic insert of Creator_PostBuild version. Do not edit the line below
-creatorPostBuildVersion = '2.21'
+creatorPostBuildVersion = '2.22'
 
 # Creator_PostBuild_DateTime_Line - automatic insert of Creator Generated DateTime. Do not edit the line below
-creatorGeneratedDateTime = '2026-05-19 11:51:27'
+creatorGeneratedDateTime = '2026-08-17 10:20:33'
 
 # Creator_PostBuild_devicePart_Line - automatic insert of device part by Creator_PostBuild. Do not edit the line below
 devicePart = 'CY8C6347BZI-BLD53'
@@ -38,7 +38,7 @@ postBuildCommands = ''
 creatorDirectory = 'Onethinx_Creator.cydsn'
 
 # OTX_Extension_print(PROJECTNAME = '${workspaceFolderBasename}')
-PROJECTNAME = 'LoRa_Sniffer'
+PROJECTNAME = 'OTX-LoRa-Sniffer'
 
 # OTX_Extension_print(ONETHINX_PACK_LOC = '${env:ONETHINX_PACK_LOC}')
 ONETHINX_PACK_LOC = '/Applications/OTX-Maestro'
@@ -71,7 +71,7 @@ assembler_args = [
 	'-mfloat-abi=softfp',
 	'-mfpu=fpv4-sp-d16',
 	'-mthumb',
-	#'-g',
+	'-g',
 	'-W',
 # Creator_PostBuild_AssemblerOptions_End - automatic insert of assembler options by Creator_PostBuild. Do not edit above this line
 	'-O3'
@@ -83,15 +83,15 @@ compiler_args     = [
 	'-mfloat-abi=softfp',
 	'-mfpu=fpv4-sp-d16',
 	'-mthumb',
-	#'-g',
-	#'-DDEBUG',
+	'-g',
+	'-DDEBUG',
 	'-DCY_CORE_ID=0',
 	'-DCY_PSOC_CREATOR_USED=1',
 	'-DCY8C6347BZI_BLD53',
 	'-Wall',
 	'-ffunction-sections',
 	'-ffat-lto-objects',
-	#'-Og',
+	'-Og',
 # Creator_PostBuild_CompilerOptions_End - automatic insert of compiler options by Creator_PostBuild. Do not edit above this line
 	'-O3'
 ]
@@ -105,9 +105,9 @@ linker_args     = [
 	'-mthumb',
 	'-specs=nano.specs',
 	'-Wl,--gc-sections',
-	#'-g',
+	'-g',
 	'-ffunction-sections',
-	'-O3',
+	'-Og',
 	'-ffat-lto-objects',
 # Creator_PostBuild_LinkerOptions_End - automatic insert of linker options by Creator_PostBuild. Do not edit above this line
 	'-O3'
@@ -117,7 +117,6 @@ include_dirs       = [
 # OTX_Extension_HeaderFiles_Start - automatic insert of source files by the OTX VSCode extension. Do not edit below this line
 	'source/OnethinxCore',
 	'source/PrintF',
-	'source/micro-ecc',
 # OTX_Extension_HeaderFiles_End - automatic insert of source files by the OTX VSCode extension. Do not edit above this line
 # Creator_PostBuild_IncludeFolders_Start - automatic insert of include header folders by Creator_PostBuild. Do not edit below this line
 	'Onethinx_Creator.cydsn/',
@@ -155,7 +154,6 @@ sourcefiles       = [
 	'source/OnethinxCore/OTX18_Core.c',
 	'source/PrintF/PrintF.c',
 	'source/main.c',
-	'source/micro-ecc/uECC.c',
 # OTX_Extension_SourceFiles_End - automatic insert of source files by the OTX VSCode extension. Do not edit above this line
 # Creator_PostBuild_SourceFiles_Start - automatic insert of source files by Creator_PostBuild. Do not edit below this line
 	'Onethinx_Creator.cydsn/Generated_Source/PSoC6/cyfitter_sysint_cfg.c',
